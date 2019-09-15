@@ -50,18 +50,19 @@ public class ListController {
     }
     
     public void setupBlocks() {
-    	Block oak = new Block("Oak.png", "Oak");blocks.add(oak);
-    	Block stone = new Block("Stone.png", "Stone");blocks.add(stone);
-    	Block bedrock = new Block("Bedrock.png", "Bedrock");blocks.add(bedrock);
-    	Block emerald = new Block("Emerald.png", "Emerald");blocks.add(emerald);
-    	Block iron = new Block("Iron.png", "Iron");blocks.add(iron);
-    	Block lava = new Block("Lava.png", "Lava");blocks.add(lava);
-    	Block obsidian = new Block("Obsidian.png", "Obsidian");blocks.add(obsidian);
-    	Block pumpkin = new Block("Pumpkin.png", "Pumpkin");blocks.add(pumpkin);
-    	Block sand = new Block("Sand.png", "Sand");blocks.add(sand);
-    	Block tnt = new Block("Tnt.png", "Tnt");blocks.add(tnt);
-    	Block water = new Block("Water.png", "Water");blocks.add(water);
-    	Block wool = new Block("Wool.png", "Wool");blocks.add(wool);
+    	int k = 0;
+    	Block oak = new Block("Oak.png", "Oak", k);blocks.add(oak);k++;
+    	Block stone = new Block("Stone.png", "Stone", k);blocks.add(stone);k++;
+    	Block bedrock = new Block("Bedrock.png", "Bedrock", k);blocks.add(bedrock);k++;
+    	Block emerald = new Block("Emerald.png", "Emerald", k);blocks.add(emerald);k++;
+    	Block iron = new Block("Iron.png", "Iron", k);blocks.add(iron);k++;
+    	Block lava = new Block("Lava.png", "Lava", k);blocks.add(lava);k++;
+    	Block obsidian = new Block("Obsidian.png", "Obsidian", k);blocks.add(obsidian);k++;
+    	Block pumpkin = new Block("Pumpkin.png", "Pumpkin", k);blocks.add(pumpkin);k++;
+    	Block sand = new Block("Sand.png", "Sand", k);blocks.add(sand);k++;
+    	Block tnt = new Block("Tnt.png", "Tnt", k);blocks.add(tnt);k++;
+    	Block water = new Block("Water.png", "Water", k);blocks.add(water);k++;
+    	Block wool = new Block("Wool.png", "Wool", k);blocks.add(wool);k++;
     }
     
     @FXML
