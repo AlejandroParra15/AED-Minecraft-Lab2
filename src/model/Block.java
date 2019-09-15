@@ -10,11 +10,13 @@ public class Block {
 	private int number;
 	private Image image;
 	private ImageView imageView;
+	private int key;
 	
-	public Block(String p, String n) {
+	public Block(String p, String n, int k) {
 		path = "Images/"+p;
 		name = n;
 		image = new Image(path);
+		key = k;
 		setupImage();
 	}
 	
