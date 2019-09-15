@@ -17,12 +17,12 @@ public class AccessQueue<T> implements MQueue<T>{
 	public void add(T obj) {
 		
 		Node<T> nn = new Node<T>(obj);
-		
 		if(head == null) {
 			head = nn;
 		}else {
 			tail.setNext(nn);
 			tail = nn;
+			
 		}
 		size++;
 	}
