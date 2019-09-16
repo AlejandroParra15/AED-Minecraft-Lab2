@@ -16,7 +16,7 @@ public class Block {
 		path = "Images/"+p;
 		name = n;
 		image = new Image(path);
-		key = k;
+		setKey(k);
 		setupImage();
 	}
 	
@@ -64,6 +64,14 @@ public class Block {
 
 	public void setImageView(ImageView imageView) {
 		this.imageView = imageView;
+	}
+
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
 	}
 	
 }

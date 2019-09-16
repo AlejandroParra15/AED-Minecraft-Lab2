@@ -1,18 +1,14 @@
 package ui;
 
-import java.io.IOException;
 import java.util.ArrayList;
-
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.Block;
@@ -25,8 +21,13 @@ public class ListController {
     private GridPane gridList;
     @FXML
     private ImageView imgSelected;
+    ImageIcon icono = new ImageIcon("Resources/icono.png");
     
     ArrayList<Block> blocks = new ArrayList<Block>();
+   
+    InventoryController ic;
+    
+    int selected = -1;
     
     public void initialize() {
     	setupBlocks();
@@ -66,28 +67,54 @@ public class ListController {
     }
     
     @FXML
-    void lowerBlock(MouseEvent e) {
-    	
-    }
-    
-    @FXML
     void AddToInventory(ActionEvent event) {
-
+    	//try {
+			int nblocks = Integer.parseInt(tfNumberBlocks.getText());
+			if(nblocks <=64 && nblocks >0) {
+				for (int i = 0; i < blocks.size(); i++) {
+					if(blocks.get(i).getImage()==imgSelected.getImage()) {
+						Block b = blocks.get(i);
+						Block bl = new Block(b.getName()+".png", b.getName(), b.getKey());
+						bl.setNumber(nblocks);
+						ic.addToInventary(bl);
+						JOptionPane.showMessageDialog(null, " Block added :)", "Congratulations!", JOptionPane.PLAIN_MESSAGE, icono);
+					}
+						
+				}
+			}else {
+				JOptionPane.showMessageDialog(null, "the number entered must be greater than 0 and less than or equal to 64.","Error",JOptionPane.ERROR_MESSAGE);
+			}
+		/*} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Enter a number in the field.","Error",JOptionPane.ERROR_MESSAGE);
+			tfNumberBlocks.setText("");
+			tfNumberBlocks.requestFocus();
+		}*/
+			Stage stage = null;
+			stage = (Stage) tfNumberBlocks.getScene().getWindow();
+			stage.close();
     }
 
     @FXML
     void back(ActionEvent event) {
     	Stage stage = null;
-		Parent myNewScene = null;
 		stage = (Stage) tfNumberBlocks.getScene().getWindow();
+		/*FXMLLoader fxmlL = new FXMLLoader(getClass().getResource("Inventory.fxml"));
+		Parent root;
 		try {
-			myNewScene = FXMLLoader.load(getClass().getResource("Inventory.fxml"));
+			root = fxmlL.load();
+			ic = fxmlL.getController();
+			Scene scene = new Scene(root);
+			stage.setTitle("List");
+			stage.setScene(scene);
+			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scene scene = new Scene(myNewScene);
-		stage.setScene(scene);
-		stage.setTitle("My New Scene");
-		stage.show();
+		*/
+    	stage.close();
+    }
+    
+    public void setupInventaryController(InventoryController inventaryC) {
+    	ic = inventaryC;
     }
 }

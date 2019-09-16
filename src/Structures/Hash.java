@@ -11,7 +11,7 @@ public class Hash<T> {
 	public Hash(int s) {
 		
 		A = new Node[s];
-		size = 0;
+		setSize(s);
 		
 	}
 	
@@ -19,7 +19,7 @@ public class Hash<T> {
 	public Hash() {
 		
 		A = new Node[BASE_SIZE];
-		size = 0;
+		setSize(BASE_SIZE);
 		
 	}
 	
@@ -55,6 +55,18 @@ public class Hash<T> {
 	
 	public void remove(int key) {
 		//TODO
+	}
+
+	public int size() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
+	public Node<T> getObject(int k) {
+		return A[k];
 	}
 	
 }
