@@ -22,6 +22,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -35,7 +36,10 @@ public class InventoryController {
     private GridPane gridQuickAcces;
 	@FXML
 	private Label lbOpenList;
+	@FXML
+    private TextField tfIndex;
 	
+	int selectedQueue = 0;
 	ArrayList<Block> bs;
 	ListController lc;
 	Hash<Block> hash = new Hash<>();
@@ -82,7 +86,40 @@ public class InventoryController {
 	
 	@FXML
     void navigation(MouseEvent event) {
-		
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				//gridQuickAcces.getChildren().clear();
+				for (int k = 0; k < queue[selectedQueue].size(); k++) {
+					if(!queue[selectedQueue].isEmpty()) {
+						Label lb = new Label(String.valueOf(queue[selectedQueue].peek().getNumber()));
+						lb.setTextFill(Color.WHITE);
+						try {
+							final Font f = Font.loadFont(
+									new FileInputStream(new File("Resources/minecraft_font.ttf")), 18);
+							lb.setFont(f);
+						} catch (FileNotFoundException e) {
+							e.printStackTrace();
+						}
+						lb.setPadding(new Insets(35, 0, 0, 30));
+						lb.setStyle("-fx-cursor: hand");
+						lb.setId(String.valueOf(queue[selectedQueue].peek().getKey()));
+						ImageView image = new ImageView(queue[selectedQueue].poll().getPath());
+						image.setFitHeight(62);
+						image.setFitWidth(56);
+						gridQuickAcces.add(image, k, 0);
+						gridQuickAcces.add(lb, k, 0);
+					}
+				}
+				tfIndex.setText(String.valueOf(selectedQueue));
+				if(selectedQueue<11) {
+					selectedQueue++;
+				}else {
+					selectedQueue=0;
+				}
+			}
+		});
     }
 	
 	public void refresh() {
