@@ -4,6 +4,7 @@ public class Node<T> {
 	
 	private T obj;
 	private T data;
+	private int key;
 	
 	private Node<T> next;
 	
@@ -15,6 +16,28 @@ public class Node<T> {
 	public Node(T ob) {
 		obj = ob;
 		next = null;
+	}
+	
+	public Node(T ob, int k) {
+		obj = ob;
+		next = null;
+		key = k;
+	}
+	
+	public boolean hasNext() {
+		if(next != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
 	}
 
 	public T getObj() {

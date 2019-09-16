@@ -19,6 +19,7 @@ public class AccessQueue<T> implements MQueue<T>{
 		Node<T> nn = new Node<T>(obj);
 		if(head == null) {
 			head = nn;
+			tail = nn;
 		}else {
 			tail.setNext(nn);
 			tail = nn;
