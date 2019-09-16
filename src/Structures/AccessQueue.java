@@ -13,6 +13,10 @@ public class AccessQueue<T> implements MQueue<T>{
 		size = 0;
 	}
 	
+	public boolean isEmpty() {
+		return head == null;
+	}
+	
 	@Override
 	public void add(T obj) {
 		
@@ -50,6 +54,10 @@ public class AccessQueue<T> implements MQueue<T>{
 			return null;
 		}
 		
+	}
+	
+	public int size() {
+		return size;
 	}
 	
 }
