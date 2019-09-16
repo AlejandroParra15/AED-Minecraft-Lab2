@@ -87,10 +87,10 @@ public class InventoryController {
 	@FXML
     void navigation(MouseEvent event) {
 		Platform.runLater(new Runnable() {
-			
 			@Override
 			public void run() {
-				//gridQuickAcces.getChildren().clear();
+				AccessQueue<Block> q = new AccessQueue<>();
+				gridQuickAcces.getChildren().clear();
 				for (int k = 0; k < queue[selectedQueue].size(); k++) {
 					if(!queue[selectedQueue].isEmpty()) {
 						Label lb = new Label(String.valueOf(queue[selectedQueue].peek().getNumber()));
@@ -105,6 +105,7 @@ public class InventoryController {
 						lb.setPadding(new Insets(35, 0, 0, 30));
 						lb.setStyle("-fx-cursor: hand");
 						lb.setId(String.valueOf(queue[selectedQueue].peek().getKey()));
+						q.add(queue[selectedQueue].peek());
 						ImageView image = new ImageView(queue[selectedQueue].poll().getPath());
 						image.setFitHeight(62);
 						image.setFitWidth(56);
@@ -112,6 +113,7 @@ public class InventoryController {
 						gridQuickAcces.add(lb, k, 0);
 					}
 				}
+				queue[selectedQueue] = q;
 				tfIndex.setText(String.valueOf(selectedQueue));
 				if(selectedQueue<11) {
 					selectedQueue++;
